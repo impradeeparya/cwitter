@@ -41,7 +41,7 @@ public class LogonServiceImpl implements LogonService {
                 authenticationResponseDto.setAuthenticated(true);
                 authenticationResponseDto.setMessage("Login Success");
                 authenticationResponseDto.setUsername(username);
-                String token = genrateToken();
+                String token = generateToken();
                 authenticationResponseDto.setToken(token);
 
                 /*updating token in db*/
@@ -65,22 +65,46 @@ public class LogonServiceImpl implements LogonService {
 
         log.info("Logging out current user");
         AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto();
-        authenticationResponseDto.setAuthenticated(true);
-        authenticationResponseDto.setMessage("Logout Success");
-        User user = logonDao.findByToken(token);
+        authenticationResponseDto.setAuthenticated(false);
+        authenticationResponseDto.setMessage("Logout Failed, User not exists");
 
-        if (user != null) {
-            authenticationResponseDto.setUsername(user.getUserName());
-            user.setToken(null);
-            user.setCreatedOn(LocalDateTime.now());
-            logonDao.save(user);
+        if (token != null) {
+            User user = logonDao.findByToken(token);
+            if (user != null) {
+                authenticationResponseDto.setUsername(user.getUserName());
+                authenticationResponseDto.setAuthenticated(true);
+                authenticationResponseDto.setMessage("Logout Success");
+                user.setToken(null);
+                user.setCreatedOn(LocalDateTime.now());
+                logonDao.save(user);
+            }
         }
 
 
         return authenticationResponseDto;
     }
 
-    private String genrateToken() {
+    @Override
+    public AuthenticationResponseDto validateToken(String authorization) {
+        log.info("Logging out current user");
+        AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto();
+        authenticationResponseDto.setAuthenticated(false);
+        authenticationResponseDto.setMessage("Invalid User");
+        if (authorization != null) {
+            User user = logonDao.findByToken(authorization);
+
+            if (user != null) {
+                authenticationResponseDto.setUsername(user.getUserName());
+                authenticationResponseDto.setAuthenticated(true);
+                authenticationResponseDto.setMessage("Valid User");
+            }
+        }
+
+
+        return authenticationResponseDto;
+    }
+
+    private String generateToken() {
         log.info("generating token");
         return UUID.randomUUID().toString() + "-" + System.currentTimeMillis();
     }

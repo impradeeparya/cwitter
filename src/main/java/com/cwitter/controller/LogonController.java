@@ -35,4 +35,11 @@ public class LogonController {
     }
 
 
+    @RequestMapping(value = "/validateToken", method = RequestMethod.GET)
+    public AuthenticationResponseDto validateToken(
+            @RequestHeader String Authorization) {
+        log.info("validating request for token : " + Authorization);
+        return logonService.validateToken(Authorization);
+    }
 }
+

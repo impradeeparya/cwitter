@@ -14,4 +14,6 @@ public interface LogonService {
     AuthenticationResponseDto logon(String username, String password);
 
     AuthenticationResponseDto logout(String token);
+
+    AuthenticationResponseDto validateToken(String authorization);
 }
