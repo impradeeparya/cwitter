@@ -31,8 +31,13 @@ public class User implements Serializable {
 
     private String token;
 
-    @NotNull(message = "created on date should not be null")
     private LocalDateTime createdOn;
+
+    @NotNull(message = "email id should not be null")
+    private String emailId;
+
+    @NotNull(message = "phone number should not be null")
+    private String phoneNumber;
 
     public Long getId() {
         return id;
@@ -74,4 +79,19 @@ public class User implements Serializable {
         this.createdOn = createdOn;
     }
 
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

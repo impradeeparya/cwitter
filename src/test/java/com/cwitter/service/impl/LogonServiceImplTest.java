@@ -1,6 +1,6 @@
 package com.cwitter.service.impl;
 
-import com.cwitter.dao.LogonDao;
+import com.cwitter.dao.UserDao;
 import com.cwitter.dto.AuthenticationResponseDto;
 import com.cwitter.model.User;
 import junit.framework.TestCase;
@@ -24,7 +24,7 @@ public class LogonServiceImplTest {
     LogonServiceImpl logonService;
 
     @Mock
-    LogonDao logonDao;
+    UserDao userDao;
 
     @Before
     public void setUp() {
@@ -48,14 +48,14 @@ public class LogonServiceImplTest {
     @Test
     public void shouldReturnTrueForValidUserNameAndPasswordOnLogin() {
         User user = new User();
-        Mockito.when(logonDao.findByUserNameAndPassword(Mockito.anyString(), Mockito.anyString())).thenReturn(user);
+        Mockito.when(userDao.findByUserNameAndPassword(Mockito.anyString(), Mockito.anyString())).thenReturn(user);
         AuthenticationResponseDto authenticationResponseDto = logonService.logon("username", "password");
         TestCase.assertTrue(authenticationResponseDto.isAuthenticated());
     }
 
     @Test
     public void shouldReturnFalseForInvalidUserNameAndPasswordOnLogin() {
-        Mockito.when(logonDao.findByUserNameAndPassword(Mockito.anyString(), Mockito.anyString())).thenReturn(null);
+        Mockito.when(userDao.findByUserNameAndPassword(Mockito.anyString(), Mockito.anyString())).thenReturn(null);
         AuthenticationResponseDto authenticationResponseDto = logonService.logon("username", "password");
         TestCase.assertFalse(authenticationResponseDto.isAuthenticated());
     }
@@ -71,7 +71,7 @@ public class LogonServiceImplTest {
 
     @Test
     public void shouldReturnFalseForInvalidTokenOnLogout() {
-        Mockito.when(logonDao.findByToken(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userDao.findByToken(Mockito.anyString())).thenReturn(null);
         AuthenticationResponseDto authenticationResponseDto = logonService.logout("token");
         TestCase.assertFalse(authenticationResponseDto.isAuthenticated());
     }
@@ -79,8 +79,8 @@ public class LogonServiceImplTest {
     @Test
     public void shouldReturnTrueForValidUserTokenOnLogout() {
         User user = new User();
-        Mockito.when(logonDao.findByToken(Mockito.anyString())).thenReturn(user);
-        Mockito.when(logonDao.save(user)).thenReturn(user);
+        Mockito.when(userDao.findByToken(Mockito.anyString())).thenReturn(user);
+        Mockito.when(userDao.save(user)).thenReturn(user);
         AuthenticationResponseDto authenticationResponseDto = logonService.logout("token");
         TestCase.assertTrue(authenticationResponseDto.isAuthenticated());
     }
@@ -91,14 +91,14 @@ public class LogonServiceImplTest {
     @Test
     public void shouldReturnTrueForValidTokenOnTokenValidation() {
         User user = new User();
-        Mockito.when(logonDao.findByToken(Mockito.anyString())).thenReturn(user);
+        Mockito.when(userDao.findByToken(Mockito.anyString())).thenReturn(user);
         AuthenticationResponseDto authenticationResponseDto = logonService.validateToken("token");
         TestCase.assertTrue(authenticationResponseDto.isAuthenticated());
     }
 
     @Test
     public void shouldReturnFalseForInvalidUserTokenOnTokenValidation() {
-        Mockito.when(logonDao.findByToken(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userDao.findByToken(Mockito.anyString())).thenReturn(null);
         AuthenticationResponseDto authenticationResponseDto = logonService.validateToken("token");
         TestCase.assertFalse(authenticationResponseDto.isAuthenticated());
     }

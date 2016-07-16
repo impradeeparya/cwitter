@@ -1,6 +1,6 @@
 package com.cwitter.service.impl;
 
-import com.cwitter.dao.LogonDao;
+import com.cwitter.dao.UserDao;
 import com.cwitter.dto.AuthenticationResponseDto;
 import com.cwitter.model.User;
 import com.cwitter.service.LogonService;
@@ -26,7 +26,7 @@ public class LogonServiceImpl implements LogonService {
     private Logger log = Logger.getLogger(LogonServiceImpl.class);
 
     @Autowired
-    LogonDao logonDao;
+    UserDao userDao;
 
 
     @Override
@@ -35,7 +35,7 @@ public class LogonServiceImpl implements LogonService {
         AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto();
 
         if (username != null && password != null) {
-            User user = logonDao.findByUserNameAndPassword(username, password);
+            User user = userDao.findByUserNameAndPassword(username, password);
             if (user != null) {
                 log.info("Login Success");
                 authenticationResponseDto.setAuthenticated(true);
@@ -47,7 +47,7 @@ public class LogonServiceImpl implements LogonService {
                 /*updating token in db*/
                 user.setToken(token);
                 user.setCreatedOn(LocalDateTime.now());
-                logonDao.save(user);
+                userDao.save(user);
             } else {
                 log.info("Login failed");
                 authenticationResponseDto.setAuthenticated(false);
@@ -69,14 +69,14 @@ public class LogonServiceImpl implements LogonService {
         authenticationResponseDto.setMessage("Logout Failed, User not exists");
 
         if (token != null) {
-            User user = logonDao.findByToken(token);
+            User user = userDao.findByToken(token);
             if (user != null) {
                 authenticationResponseDto.setUsername(user.getUserName());
                 authenticationResponseDto.setAuthenticated(true);
                 authenticationResponseDto.setMessage("Logout Success");
                 user.setToken(null);
                 user.setCreatedOn(LocalDateTime.now());
-                logonDao.save(user);
+                userDao.save(user);
             }
         }
 
@@ -91,7 +91,7 @@ public class LogonServiceImpl implements LogonService {
         authenticationResponseDto.setAuthenticated(false);
         authenticationResponseDto.setMessage("Invalid User");
         if (authorization != null) {
-            User user = logonDao.findByToken(authorization);
+            User user = userDao.findByToken(authorization);
 
             if (user != null) {
                 authenticationResponseDto.setUsername(user.getUserName());

@@ -1,6 +1,5 @@
 package com.cwitter.dao.impl;
 
-import com.cwitter.dao.LogonDao;
 import org.springframework.stereotype.Repository;
 
 /**

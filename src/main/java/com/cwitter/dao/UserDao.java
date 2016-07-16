@@ -14,8 +14,10 @@ import java.math.BigInteger;
  * To change this template use File | Settings | File Templates.
  */
 @Transactional
-public interface LogonDao extends CrudRepository<User, Long> {
+public interface UserDao extends CrudRepository<User, Long> {
     User findByUserNameAndPassword(String userName, String password);
 
     User findByToken(String token);
+
+    User findByEmailIdOrPhoneNumberOrUserName(String emailId, String phoneNumber, String userName);
 }
