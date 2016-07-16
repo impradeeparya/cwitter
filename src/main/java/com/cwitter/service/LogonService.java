@@ -12,4 +12,6 @@ import com.cwitter.model.User;
  */
 public interface LogonService {
     AuthenticationResponseDto logon(String username, String password);
+
+    AuthenticationResponseDto logout(String token);
 }

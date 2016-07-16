@@ -4,10 +4,7 @@ import com.cwitter.dto.AuthenticationResponseDto;
 import com.cwitter.service.LogonService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -30,5 +27,12 @@ public class LogonController {
         log.info("logon request for user : " + username);
         return logonService.logon(username, password);
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public AuthenticationResponseDto logout(@RequestHeader("Authorization") String token) {
+        log.info("logout request");
+        return logonService.logout(token);
+    }
+
 
 }

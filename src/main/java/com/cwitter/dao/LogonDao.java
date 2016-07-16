@@ -16,4 +16,6 @@ import java.math.BigInteger;
 @Transactional
 public interface LogonDao extends CrudRepository<User, Long> {
     User findByUserNameAndPassword(String userName, String password);
+
+    User findByToken(String token);
 }

@@ -60,6 +60,26 @@ public class LogonServiceImpl implements LogonService {
         return authenticationResponseDto;
     }
 
+    @Override
+    public AuthenticationResponseDto logout(String token) {
+
+        log.info("Logging out current user");
+        AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto();
+        authenticationResponseDto.setAuthenticated(true);
+        authenticationResponseDto.setMessage("Logout Success");
+        User user = logonDao.findByToken(token);
+
+        if (user != null) {
+            authenticationResponseDto.setUsername(user.getUserName());
+            user.setToken(null);
+            user.setCreatedOn(LocalDateTime.now());
+            logonDao.save(user);
+        }
+
+
+        return authenticationResponseDto;
+    }
+
     private String genrateToken() {
         log.info("generating token");
         return UUID.randomUUID().toString() + "-" + System.currentTimeMillis();

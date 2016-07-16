@@ -5,4 +5,4 @@ use cwitter;
 #Run after application up(one time)
 insert into cwitter.hibernate_sequence value(0);
 
-select * from user;
+select * from cwitter.user;
