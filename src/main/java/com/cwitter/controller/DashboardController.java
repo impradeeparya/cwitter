@@ -18,9 +18,9 @@ import java.util.List;
  */
 
 @RestController
-public class TweetController {
+public class DashboardController {
 
-    Logger log = Logger.getLogger(TweetController.class);
+    Logger log = Logger.getLogger(DashboardController.class);
 
 
     @Autowired

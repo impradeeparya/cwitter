@@ -9,7 +9,7 @@
 
 angular.module(
         'cwitter',
-        [ 'ngRoute', 'cwitter.logon', 'cwitter.util']).config(
+        [ 'ngRoute', 'cwitter.logon', 'cwitter.dashboard', 'cwitter.util']).config(
     function ($httpProvider) {
         $httpProvider.interceptors.push(function (LocalStorage) {
             return {
@@ -26,7 +26,8 @@ angular.module(
 
     }).run(function ($rootScope, $location, LocalStorage, LogonService) {
 
-        if ($location.path() == '') {
+        console.log($location.path())
+        if ($location.path() == '' || $location.path() == '/') {
             $location.path('/login');
         }
 
