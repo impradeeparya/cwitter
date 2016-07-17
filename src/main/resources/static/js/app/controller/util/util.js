@@ -1,0 +1,1 @@
+angular.module('cwitter.util', [ 'cwitter.util.service' ])

@@ -1,44 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="cwitter">
 <head>
     <title>Cwitter</title>
 
     <!--Css -->
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.css">
     <link rel="stylesheet" href="css/cwitter.css">
 </head>
 <body>
 
-<div class="container">
-
-    <div class="login-page">
-        <div class="form">
-            <form class="register-form">
-                <input type="text" placeholder="name"/>
-                <input type="password" placeholder="password"/>
-                <input type="text" placeholder="email address"/>
-                <input type="text" placeholder="phone number"/>
-                <button>create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
-            </form>
-            <form class="login-form">
-                <input type="text" placeholder="username"/>
-                <input type="password" placeholder="password"/>
-                <button>login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
-            </form>
-        </div>
-    </div>
-
-</div>
-<!--End of container-->
+<ng-view></ng-view>
 
 
 <script src="js/jquery/jquery-3.1.0.min.js"></script>
+<script src="js/angularJs/angular.js"></script>
+<script src="js/angularJs/angular-route.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/cwitter.js"></script>
 <script src="js/app.js"></script>
+<script src="js/app/controller/logon/logon.js"></script>
+<script src="js/app/controller/logon/controller.js"></script>
+<script src="js/app/service/logon/service.js"></script>
+<script src="js/app/controller/util/util.js"></script>
+<script src="js/app/service/util/service.js"></script>
 
 </body>
 </html>
