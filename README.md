@@ -5,8 +5,10 @@ A twitter clone where users should be able to signup/log in and post tweets.
 Follow below steps to run this application : 
 
 1. Install MYSQL server on your system.
-  1. Windows installation : http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
-  2. Linux/Ubuntu installation : https://help.ubuntu.com/12.04/serverguide/mysql.html
+
+
+1. Windows installation : http://dev.mysql.com/doc/refman/5.7/en/windows-installation.html
+2. Linux/Ubuntu installation : https://help.ubuntu.com/12.04/serverguide/mysql.html
 
 2. Create localhost connection with the help of workbeanch or with command line(username root and password root).
 
