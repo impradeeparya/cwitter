@@ -34,13 +34,15 @@
                         Keep Tweeting
                     </div>
                     <div class="panel-body">
-                        <textarea class="form-control" placeholder="Enter here for tweet..." rows="3"></textarea>
+                        <textarea class="form-control" placeholder="Enter here for tweet..." rows="3"
+                                  ng-model="tweet"></textarea>
                         <br/>
-                        <a href="#" class="btn btn-primary btn-sm pull-right">Tweet</a>
+                        <button class="btn btn-primary btn-sm pull-right" ng-click="postTweet()">Tweet</button>
 
                         <div class="clearfix"></div>
                         <hr/>
-                        <ul class="media-list" ng-repeat="tweet in tweets">
+                        <ul class="media-list"
+                            ng-repeat="tweet in tweets">
                             <li class="media">
                                 <a href="#" class="pull-left">
                                     <img src="../image/profile-logo.png" alt="" class="img-circle">

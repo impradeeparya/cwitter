@@ -64,7 +64,7 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<TweetDto> getTweets() {
 
-        Iterable<Tweet> tweets = tweetDao.findAll();
+        Iterable<Tweet> tweets = tweetDao.findAllByOrderByCreatedOnDesc();
 
         List<TweetDto> tweetDtoList = new ArrayList<>();
         tweets.forEach((tweet) -> {
@@ -74,7 +74,6 @@ public class TweetServiceImpl implements TweetService {
             tweetDto.setUserName(tweet.getUser().getUserName());
             tweetDtoList.add(tweetDto);
         });
-
         return tweetDtoList;
     }
 

@@ -3,6 +3,8 @@ package com.cwitter.dao;
 import com.cwitter.model.Tweet;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: pradeep
@@ -11,4 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  * To change this template use File | Settings | File Templates.
  */
 public interface TweetDao extends CrudRepository<Tweet, Long> {
+
+    List<Tweet> findAllByOrderByCreatedOnDesc();
 }

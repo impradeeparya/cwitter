@@ -26,7 +26,6 @@ angular.module(
 
     }).run(function ($rootScope, $location, LocalStorage, LogonService) {
 
-        console.log($location.path())
         if ($location.path() == '' || $location.path() == '/') {
             $location.path('/login');
         }

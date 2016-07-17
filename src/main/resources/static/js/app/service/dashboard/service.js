@@ -16,6 +16,11 @@ angular.module('cwitter.dashboard.service', []).service('DashboardService',
             });
         }
 
+        this.postTweet = function (twt) {
+
+            return $http.post("/tweet", {tweet: twt});
+        }
+
     });
 
 

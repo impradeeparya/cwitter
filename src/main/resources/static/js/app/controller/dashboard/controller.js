@@ -13,10 +13,17 @@ angular
 
 
         $scope.tweets = [];
+        $scope.tweet = "";
 
         DashboardService.fetchTweets().then(function (response) {
             $scope.tweets = response.data;
         });
+
+        $scope.postTweet = function () {
+            DashboardService.postTweet($scope.tweet).then(function (response) {
+                console.log(response);
+            });
+        }
     }
 );
 
