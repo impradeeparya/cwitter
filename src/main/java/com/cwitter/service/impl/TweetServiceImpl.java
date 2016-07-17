@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,7 +36,7 @@ public class TweetServiceImpl implements TweetService {
     private TweetDao tweetDao;
 
     @Override
-    public ApplicationResponseDto saveTweet(String token, TweetDto tweetDto) {
+    public ApplicationResponseDto postTweet(String token, TweetDto tweetDto) {
         ApplicationResponseDto applicationResponseDto = new ApplicationResponseDto();
         applicationResponseDto.setSuccess(false);
         applicationResponseDto.setMessage("unable to post, u r not authorized to tweet");
@@ -57,6 +59,23 @@ public class TweetServiceImpl implements TweetService {
 
         }
         return applicationResponseDto;
+    }
+
+    @Override
+    public List<TweetDto> getTweets() {
+
+        Iterable<Tweet> tweets = tweetDao.findAll();
+
+        List<TweetDto> tweetDtoList = new ArrayList<>();
+        tweets.forEach((tweet) -> {
+            TweetDto tweetDto = new TweetDto();
+            tweetDto.setTweet(tweet.getMessage());
+            tweetDto.setCreatedOn(tweet.getCreatedOn());
+            tweetDto.setUserName(tweet.getUser().getUserName());
+            tweetDtoList.add(tweetDto);
+        });
+
+        return tweetDtoList;
     }
 
     private boolean isValidTweet(TweetDto tweet) {

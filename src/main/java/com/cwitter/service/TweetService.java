@@ -3,6 +3,8 @@ package com.cwitter.service;
 import com.cwitter.dto.ApplicationResponseDto;
 import com.cwitter.dto.TweetDto;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: pradeep
@@ -11,5 +13,8 @@ import com.cwitter.dto.TweetDto;
  * To change this template use File | Settings | File Templates.
  */
 public interface TweetService {
-    ApplicationResponseDto saveTweet(String token, TweetDto tweet);
+    ApplicationResponseDto postTweet(String token, TweetDto tweet);
+
+    List<TweetDto> getTweets();
+
 }

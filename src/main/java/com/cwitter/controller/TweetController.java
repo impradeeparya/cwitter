@@ -28,7 +28,13 @@ public class TweetController {
 
     @RequestMapping(value = "/tweet", method = RequestMethod.POST)
     public ApplicationResponseDto tweet(@RequestHeader("Authorization") String token, @RequestBody TweetDto tweet) {
+        log.info("posting tweets");
+        return tweetService.postTweet(token, tweet);
+    }
+
+    @RequestMapping(value = "/fetchTweets", method = RequestMethod.GET)
+    public List<TweetDto> fetchTweets() {
         log.info("fetching tweets");
-        return tweetService.saveTweet(token, tweet);
+        return tweetService.getTweets();
     }
 }
