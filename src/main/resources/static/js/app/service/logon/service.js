@@ -18,7 +18,10 @@ angular.module('cwitter.logon.service', []).service('LogonService',
         }
 
         this.validateToken = function () {
-            return $http.get("validateToken");
+            return $http({
+                url: "/validateToken",
+                method: "GET"
+            });
         }
     });
 

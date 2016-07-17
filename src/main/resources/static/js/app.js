@@ -37,8 +37,7 @@ angular.module(
                     $location.path('/login');
                 } else {
                     LogonService.validateToken().then(function (response) {
-
-                        if (response.data.status === false) {
+                        if (response.data.authenticated === false) {
                             $location.path('/login');
                         } else {
                             $location.path('/dashboard');
