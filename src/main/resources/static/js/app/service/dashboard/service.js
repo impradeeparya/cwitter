@@ -21,6 +21,11 @@ angular.module('cwitter.dashboard.service', []).service('DashboardService',
             return $http.post("/tweet", {tweet: twt});
         }
 
+        this.logout = function () {
+
+            return $http.get("/logout");
+        }
+
     });
 
 

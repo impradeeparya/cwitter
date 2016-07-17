@@ -24,6 +24,14 @@ angular
                 console.log(response);
             });
         }
+
+        $scope.logout = function () {
+            DashboardService.logout().then(function (response) {
+                console.log(response);
+                $location
+                    .path('/login');
+            });
+        }
     }
 );
 
