@@ -13,15 +13,18 @@ angular
 
 
         $scope.tweets = [];
-        $scope.tweet = "";
+        $scope.tweet;
 
-        DashboardService.fetchTweets().then(function (response) {
-            $scope.tweets = response.data;
-        });
+        var getLatestTweets = function () {
+            DashboardService.fetchTweets().then(function (response) {
+                $scope.tweets = response.data;
+            });
+        }
 
         $scope.postTweet = function () {
             DashboardService.postTweet($scope.tweet).then(function (response) {
-                console.log(response);
+                getLatestTweets();
+                $scope.tweet = "";
             });
         }
 
@@ -32,6 +35,7 @@ angular
                     .path('/login');
             });
         }
+        getLatestTweets();
     }
 );
 
