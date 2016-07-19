@@ -9,11 +9,12 @@ angular
     .module('cwitter.dashboard.controller', [ 'cwitter.dashboard.service' ])
     .controller(
     'DashboardController',
-    function ($scope, $location, DashboardService) {
+    function ($rootScope, $scope, $location, DashboardService) {
 
 
         $scope.tweets = [];
         $scope.tweet;
+        $scope.currentUserName = $rootScope.userName;
 
         var getLatestTweets = function () {
             DashboardService.fetchTweets().then(function (response) {
@@ -30,7 +31,6 @@ angular
 
         $scope.logout = function () {
             DashboardService.logout().then(function (response) {
-                console.log(response);
                 $location
                     .path('/login');
             });

@@ -9,7 +9,7 @@ angular
     .module('cwitter.logon.controller', [ 'cwitter.logon.service' ])
     .controller(
     'LogonController',
-    function ($scope, $location, LogonService, LocalStorage) {
+    function ($rootScope, $scope, $location, LogonService, LocalStorage) {
 
         $scope.userName = "";
         $scope.password = "";
@@ -22,6 +22,7 @@ angular
                         .set(
                             'token',
                             response.data.token);
+                    $rootScope.userName = response.data.username
                     $location
                         .path('/dashboard');
                 } else {
