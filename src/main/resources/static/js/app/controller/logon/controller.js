@@ -11,12 +11,12 @@ angular
     'LogonController',
     function ($scope, $location, LogonService, LocalStorage) {
 
-        $scope.luserName = "";
-        $scope.lpassword = "";
+        $scope.userName = "";
+        $scope.password = "";
 
 
         $scope.doLogin = function () {
-            LogonService.doLogin($scope.luserName, $scope.lpassword).then(function (response) {
+            LogonService.doLogin($scope.userName, $scope.password).then(function (response) {
                 if (response.data.authenticated == true) {
                     LocalStorage
                         .set(
@@ -25,9 +25,13 @@ angular
                     $location
                         .path('/dashboard');
                 } else {
-                    $scope.userNameEmptyMessage = '';
+                    $scope.loginFailedMessage = response.data.message;
                 }
             });
+        }
+
+        $scope.showRegistration = function () {
+            $location.path("/registration");
         }
     }
 )

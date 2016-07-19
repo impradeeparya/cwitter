@@ -9,7 +9,7 @@
 
 angular.module(
         'cwitter',
-        [ 'ngRoute', 'cwitter.logon', 'cwitter.dashboard', 'cwitter.util']).config(
+        [ 'ngRoute', 'cwitter.logon', 'cwitter.dashboard', 'cwitter.util', 'cwitter.registration']).config(
     function ($httpProvider) {
         $httpProvider.interceptors.push(function (LocalStorage) {
             return {
