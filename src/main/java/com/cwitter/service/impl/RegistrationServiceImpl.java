@@ -36,11 +36,11 @@ public class RegistrationServiceImpl implements RegistrationService {
                     applicationResponseDto.setSuccess(true);
                     applicationResponseDto.setMessage("successfully registered, no need of email and phone number validation as we don't have mailing and messaging server");
                 } else {
-                    applicationResponseDto.setMessage("user already exists");
+                    applicationResponseDto.setMessage("LOL, either username or email id or phone number already exists");
                 }
 
             } else {
-                applicationResponseDto.setMessage("Please fill all information in registration form");
+                applicationResponseDto.setMessage("Don't be smart please fill all information in registration form");
             }
         }
 

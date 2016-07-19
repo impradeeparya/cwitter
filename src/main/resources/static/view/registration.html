@@ -1,0 +1,24 @@
+<div>
+
+    <form name="registrationForm" ng-submit="doRegistration()">
+        <div>{{registrationMessage}}</div>
+
+        <label>User Name</label>
+        <input type="text" name="userName" ng-model="userName" class="form-control" required>
+
+        <label>Password</label>
+        <input type="password" name="password" ng-model="password" class="form-control" required>
+
+        <label>Email Id</label>
+        <input type="text" name="emailId" ng-model="emailId" class="form-control" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phoneNumber" ng-model="phoneNumber" class="form-control" required>
+
+
+        <button type="submit" class="btn btn-success btn-block">
+            Registration
+        </button>
+        <a ng-click="showLogon()">Sign-in</a>
+    </form>
+</div>
