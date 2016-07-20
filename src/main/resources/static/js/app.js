@@ -29,46 +29,33 @@ angular.module(
         if ($location.path() == '' || $location.path() == '/') {
             $location.path('/login');
         }
-        console.log("outer")
-
         $rootScope.$on('$routeChangeStart', function () {
 
             var path = $location.path();
-            console.log("1")
 
             if (path == '/login' || path == '/dashboard' || path == '/registration') {
-                console.log("2")
 
                 if (!LocalStorage.get('token')) {
-                    console.log("3")
                     if (path == '/registration') {
-                        console.log("4")
                         $location.path('/registration');
-                    } else if (path == '/login') {
-                        console.log("5")
+                    } else {
                         $location.path('/login');
                     }
                 } else {
-                    console.log("6")
                     LogonService.validateToken().then(function (response) {
                         if (response.data.authenticated === false) {
-                            console.log("7")
                             if (path == '/registration') {
-                                console.log("8")
                                 $location.path('/registration');
                             } else if (path == '/login') {
-                                console.log("9")
                                 $location.path('/login');
                             }
                         } else {
-                            console.log("10")
                             $rootScope.userName = response.data.username;
                             $location.path('/dashboard');
                         }
                     });
                 }
 
-                console.log($rootScope.userName + "-")
             }
 
         })
