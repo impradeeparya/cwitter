@@ -1,24 +1,46 @@
-<div>
+<div class="container">
+    <div class="login-box">
+        <div class="login-box-body">
 
-    <form name="registrationForm" ng-submit="doRegistration()">
-        <div>{{registrationMessage}}</div>
+            <h2 class="login-box-msg">
+                <strong>Let's get started with Cwitter</strong>
+            </h2>
 
-        <label>User Name</label>
-        <input type="text" name="userName" ng-model="userName" class="form-control" required>
+            <form role="form" name="registrationForm" ng-submit="doRegistration()">
+                <div ng-show="showMessage" class="alert">{{registrationMessage}}</div>
 
-        <label>Password</label>
-        <input type="password" name="password" ng-model="password" class="form-control" required>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" name="userName" ng-model="userName" class="form-control" required
+                           placeholder="enter username">
+                </div>
 
-        <label>Email Id</label>
-        <input type="text" name="emailId" ng-model="emailId" class="form-control" required>
+                <div class="form-group">
+                    <label>Password(without any restrictions)</label>
+                    <input type="password" name="password" ng-model="password" class="form-control" required
+                           placeholder="enter password">
+                </div>
 
-        <label>Phone Number</label>
-        <input type="text" name="phoneNumber" ng-model="phoneNumber" class="form-control" required>
+                <div class="form-group">
+                    <label>Email Id</label>
+                    <input type="text" name="emailId" ng-model="emailId" class="form-control" required
+                           placeholder="enter your email id">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" name="phoneNumber" ng-model="phoneNumber" class="form-control" required
+                           placeholder="enter your contact number">
+                </div>
 
 
-        <button type="submit" class="btn btn-success btn-block">
-            Registration
-        </button>
-        <a ng-click="showLogon()">Sign-in</a>
-    </form>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Registration
+                    </button>
+                </div>
+                Already Registered?<a ng-click="showLogon()">Sign-in</a>
+            </form>
+        </div>
+    </div>
 </div>

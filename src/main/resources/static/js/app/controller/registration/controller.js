@@ -15,11 +15,13 @@ angular
         $scope.password;
         $scope.emailId;
         $scope.phoneNumber;
+        $scope.showMessage = false;
 
 
         $scope.doRegistration = function () {
             RegistrationService.doRegistration($scope.userName, $scope.password, $scope.emailId, $scope.phoneNumber).then(function (response) {
                 $scope.registrationMessage = response.data.message;
+                $scope.showMessage = true;
             });
         }
 
