@@ -51,7 +51,7 @@ public class LogonServiceImpl implements LogonService {
             } else {
                 log.info("Login failed");
                 authenticationResponseDto.setAuthenticated(false);
-                authenticationResponseDto.setMessage("Login failed");
+                authenticationResponseDto.setMessage("I think you misspelled or forget username or password");
                 authenticationResponseDto.setUsername(username);
             }
         }

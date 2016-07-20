@@ -13,6 +13,8 @@ angular
 
         $scope.userName = "";
         $scope.password = "";
+        $scope.loginFailedMessage;
+        $scope.loginFailed = false;
 
 
         $scope.doLogin = function () {
@@ -27,6 +29,7 @@ angular
                         .path('/dashboard');
                 } else {
                     $scope.loginFailedMessage = response.data.message;
+                    $scope.loginFailed = true;
                 }
             });
         }
